@@ -1,0 +1,63 @@
+/* CSS variables allow you to have a single source of truth for the rules reused throughout your style sheet, so that
+if you want to change a value, you only have to change it in one place, instead of everywhere it's used.
+
+Therefore, any rules that are used more than one or two times in a style sheet that may potentially change should be 
+converted to a css variable.
+
+Some of the other benefits of css variables are:
+1. local to the browser, so no transpiling required
+2. Have access to the DOM, so you can confine variables to certain scopes, change them with JS, and they are ideal for
+    responsiveness
+3. Perfect for themes, like dark theme for example.*/
+
+
+
+/* 
+When defining css variables you need to determine which scope you want them to be available in. This will often be the :root.
+Which stands for the root of the document, which is the html element.
+*/
+
+:root{
+    /* Variables defined in the root scope, are considered global variables */
+    --red: #ff6f69;
+}
+
+html,body{
+    /* To use a variable you have to call the var function  */
+    color: var(--red)
+}
+
+
+
+/* 
+Not every variable has to be nested in the :root scope, we can also define them in the scope of any other element, and they will be
+available to that element and all of its children.
+*/
+
+.item{
+    --red: #ffeedd;
+    /* We can override variables defined in a higher scope as above, but we can also choose to define variables in a lower scope
+    to start with, because we know that value will never be used in the upper anywhere else*/
+    --item-red: red;
+    background-color: var(--item-red);
+    color: var(--red);
+}
+
+
+
+
+/* 
+You can theme certain components or states in your application. Define the base variable assignment on the main component,
+then on a class you can reassign the variable to a different value.
+
+For example, we have the .item class that assigns the --red variable defined in :root as its color. So if we want to create a
+.feature class which is a variation of .item with different colors we dont need to reassign the value of color for 
+.feature, we can just reassign the --red variable to a different value.
+*/
+
+.feature{
+    --red: #ffcc00;
+}
+
+
+
