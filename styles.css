@@ -35,12 +35,14 @@ available to that element and all of its children.
 */
 
 .item{
-    --red: #ffeedd;
+    /* --red: #ffeedd; */
     /* We can override variables defined in a higher scope as above, but we can also choose to define variables in a lower scope
     to start with, because we know that value will never be used in the upper anywhere else*/
-    --item-red: red;
-    background-color: var(--item-red);
+    /* --item-red: red; */
+    background-color: var(--red);
     color: var(--red);
+    width: 200px;
+    height: 200px;
 }
 
 
@@ -59,5 +61,16 @@ For example, we have the .item class that assigns the --red variable defined in 
     --red: #ffcc00;
 }
 
+
+
+/* 
+Youre also able to reassign variables at a different screen sizes
+*/
+
+@media (max-width: 450px){
+    .item{
+        --red: green;
+    }
+}
 
 
